@@ -1,11 +1,19 @@
-﻿namespace RecipeApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RecipeApp.Models
 {
     public class Ingredient
     {
         public int Id { get; set; }
+        
+        [Required]
         public string Name { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
+
+        [Required]
         public string DefaultUnit { get; set; } = string.Empty;
+
+        // Foreign Key
         public int CategoryId { get; set; }
 
         // Navigation properties

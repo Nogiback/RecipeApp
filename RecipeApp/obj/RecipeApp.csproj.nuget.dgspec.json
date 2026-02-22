@@ -1,36 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\Peter\\Documents\\RecipeApp\\RecipeApp\\RecipeApp.csproj": {}
+    "C:\\W26\\PROG8555 - Microsoft Web Technologies\\src\\RecipeApp\\RecipeApp\\RecipeApp.csproj": {}
   },
   "projects": {
-    "D:\\Users\\Peter\\Documents\\RecipeApp\\RecipeApp\\RecipeApp.csproj": {
+    "C:\\W26\\PROG8555 - Microsoft Web Technologies\\src\\RecipeApp\\RecipeApp\\RecipeApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\Peter\\Documents\\RecipeApp\\RecipeApp\\RecipeApp.csproj",
+        "projectUniqueName": "C:\\W26\\PROG8555 - Microsoft Web Technologies\\src\\RecipeApp\\RecipeApp\\RecipeApp.csproj",
         "projectName": "RecipeApp",
-        "projectPath": "D:\\Users\\Peter\\Documents\\RecipeApp\\RecipeApp\\RecipeApp.csproj",
-        "packagesPath": "C:\\Users\\Peter\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\Peter\\Documents\\RecipeApp\\RecipeApp\\obj\\",
+        "projectPath": "C:\\W26\\PROG8555 - Microsoft Web Technologies\\src\\RecipeApp\\RecipeApp\\RecipeApp.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\W26\\PROG8555 - Microsoft Web Technologies\\src\\RecipeApp\\RecipeApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net10.0"
+          "net9.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net10.0": {
-            "targetAlias": "net10.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -42,29 +42,27 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net10.0": {
-          "targetAlias": "net10.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.3, )"
+              "version": "[9.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[10.0.3, )"
+              "version": "[9.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.3, )"
+              "version": "[9.0.12, )"
             }
           },
           "imports": [
@@ -86,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

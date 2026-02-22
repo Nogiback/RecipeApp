@@ -12,7 +12,7 @@ namespace RecipeApp.Models
         public decimal Quantity { get; set; }
 
         [Required]
-        public string Unit { get; set; } = string.Empty;
+        public string UnitDisplay { get; set; } = string.Empty;
 
         // Foreign Keys
         public int RecipeId { get; set; }

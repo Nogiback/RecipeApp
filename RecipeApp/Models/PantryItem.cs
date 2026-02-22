@@ -13,6 +13,8 @@ namespace RecipeApp.Models
 
         [DataType(DataType.Date)]
         public DateTime ExpiryDate { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime AddedDate { get; set; } = DateTime.Now;
 
         // Foreign Keys

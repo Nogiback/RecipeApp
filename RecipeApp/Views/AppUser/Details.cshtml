@@ -52,6 +52,7 @@
         <div class="card-footer">
             <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
             <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+            <a asp-controller="PantryItem" asp-action="Index" asp-route-userid="@Model.Id" class="btn btn-outline-secondary">View Pantry</a>
             <a asp-action="Index" class="btn btn-secondary">Back to List</a>
         </div>
     </div>

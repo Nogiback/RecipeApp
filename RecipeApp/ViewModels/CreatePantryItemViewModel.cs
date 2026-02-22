@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecipeApp.ViewModels
 {
     public class CreatePantryItemViewModel
     {
-        [Required(ErrorMessage = "Please type an ingredient name.")]
-        [Display(Name = "Ingredient")]
-        public string SearchTerm { get; set; } // What the user physically types
+        public int Id { get; set; }
 
+        [ValidateNever]
+        public int UserId { get; set; }
+
+        [Display(Name = "Ingredient")]
         public int? ExistingIngredientId { get; set; } // Hidden: populated by JS if they click a match
 
         [Required]
@@ -16,6 +19,9 @@ namespace RecipeApp.ViewModels
         public decimal Quantity { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime? ExpiryDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> IngredientOptions { get; set; }
     }
 }

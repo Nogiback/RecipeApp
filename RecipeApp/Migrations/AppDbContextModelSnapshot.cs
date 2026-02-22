@@ -188,7 +188,7 @@ namespace RecipeApp.Migrations
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Unit")
+                    b.Property<string>("UnitDisplay")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

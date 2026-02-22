@@ -1,0 +1,58 @@
+﻿@model AppUserViewModel
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>@Model.UserName</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    @if (!string.IsNullOrEmpty(Model.ProfilePicUrl))
+                    {
+                        <img src="@Model.ProfilePicUrl" alt="@Model.UserName"
+                             class="img-fluid rounded-circle mb-3" style="max-width: 200px;">
+                    }
+                    else
+                    {
+                        <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+                             style="width: 200px; height: 200px; font-size: 4rem;">
+                            @Model.UserName.Substring(0, 1).ToUpper()
+                        </div>
+                    }
+                </div>
+                <div class="col-md-9">
+                    <dl class="row">
+                        <dt class="col-sm-3">Username</dt>
+                        <dd class="col-sm-9">@Model.UserName</dd>
+
+                        <dt class="col-sm-3">Email</dt>
+                        <dd class="col-sm-9">@Model.Email</dd>
+
+                        <dt class="col-sm-3">Joined Date</dt>
+                        <dd class="col-sm-9">@Model.JoinedDate.ToLongDateString()</dd>
+
+                        <dt class="col-sm-3">Total Recipes</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-info fs-6">@Model.RecipeCount</span>
+                        </dd>
+
+                        <dt class="col-sm-3">Total Reviews</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-secondary fs-6">@Model.ReviewCount</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

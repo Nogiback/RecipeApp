@@ -1,0 +1,52 @@
+﻿@model CreateRecipeIngredientViewModel
+
+@{
+    ViewData["Title"] = "Add Recipe Ingredient";
+}
+
+<div class="container mt-4">
+    <h2>Add Ingredient</h2>
+    <h4 class="text-muted">To Recipe: @ViewBag.RecipeTitle</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="RecipeId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="SelectedIngredientId" class="control-label fw-bold"></label>
+                    <select asp-for="SelectedIngredientId" asp-items="Model.IngredientOptions" class="form-select">
+                        <option value="">-- Select an Ingredient --</option>
+                    </select>
+                    <span asp-validation-for="SelectedIngredientId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Quantity" class="control-label fw-bold"></label>
+                    <input asp-for="Quantity" class="form-control" placeholder="e.g., 2.5" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="UnitDisplay" class="control-label fw-bold"></label>
+                    <input asp-for="UnitDisplay" class="form-control" placeholder="e.g., cups, pinches (leave blank for default)" />
+                    <span asp-validation-for="UnitDisplay" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Add to Recipe" class="btn btn-primary" />
+                    <a asp-action="Index" asp-route-recipeId="@Model.RecipeId" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

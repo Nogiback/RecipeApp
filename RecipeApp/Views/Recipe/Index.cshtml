@@ -1,0 +1,60 @@
+﻿@model List<RecipeViewModel>
+
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Recipes</h2>
+        <a asp-action="Create" class="btn btn-primary">Add New Recipe</a>
+    </div>
+
+    <div class="row">
+        @foreach (var recipe in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrWhiteSpace(recipe.ImageUrl))
+                    {
+                        <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Title" style="height: 200px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <span style="font-size: 4rem;">@recipe.Title.Substring(0, 1).ToUpper()</span>
+                        </div>
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Title</h5>
+                        <p class="card-text mb-1"><strong>By:</strong> @recipe.AppUserName</p>
+                        <p class="card-text mb-2"><strong>Cook Time:</strong> @recipe.CookTimeMins mins</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a asp-controller="RecipeIngredient" asp-action="Index" asp-route-recipeId="@recipe.Id" class="badge bg-info text-decoration-none p-2">
+                                @recipe.IngredientCount Ingredient(s)
+                            </a>
+                            <a asp-controller="Review" asp-action="Index" asp-route-recipeId="@recipe.Id" class="badge bg-secondary text-decoration-none p-2">
+                                @recipe.ReviewCount Review(s)
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group w-100" role="group">
+                            <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-sm btn-info">Details</a>
+                            <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@recipe.Id" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No recipes found. <a asp-action="Create">Create one now</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<RecipeIngredient>
+
+@{
+    ViewData["Title"] = "Recipe Ingredients";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Ingredients for @ViewBag.RecipeTitle</h2>
+
+        <a asp-action="Create" asp-route-recipeId="@ViewBag.RecipeId" class="btn btn-primary">
+            + Add Ingredient
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="3" class="text-center">No ingredients added yet.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayFor(modelItem => item.Ingredient.Name)</td>
+
+                        <td>
+                            @item.Quantity
+                            @(string.IsNullOrEmpty(item.UnitDisplay) ? item.Ingredient.DefaultUnit : item.UnitDisplay)
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <a asp-controller="Recipe" asp-action="Details" asp-route-id="@ViewBag.RecipeId" class="btn btn-outline-dark">Back to Recipe</a>
+    </div>
+</div>

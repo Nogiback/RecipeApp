@@ -1,0 +1,51 @@
+﻿@model Review
+
+@{
+    ViewData["Title"] = "Edit Review";
+}
+
+<div class="container mt-4">
+    <h2>Edit Your Review</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="AppUserId" />
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="RecipeId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Rating" class="control-label fw-bold">Update Rating</label>
+                    <select asp-for="Rating" class="form-select">
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Good</option>
+                        <option value="3">3 - Average</option>
+                        <option value="2">2 - It's not my favourite</option>
+                        <option value="1">1 - It's interesting</option>
+                    </select>
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Comment" class="control-label fw-bold"></label>
+                    <textarea asp-for="Comment" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-success" />
+                    <a asp-action="Index" asp-route-recipeId="@Model.RecipeId" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

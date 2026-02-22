@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PantryItem>
+@{
+    ViewData["Title"] = "My Pantry";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>My Pantry Storage</h2>
+        <a asp-action="Create" asp-route-userId="@ViewBag.CurrentUserId" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add Item
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Added Date</th>
+                <th>Expiry Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                // Optional UI trick: Highlight rows if the item is expired!
+                var isExpired = item.ExpiryDate != null && item.ExpiryDate < DateTime.Now;
+                <tr class="@(isExpired ? "table-danger" : "")">
+
+                    <td class="fw-bold">@Html.DisplayFor(modelItem => item.Ingredient.Name)</td>
+
+                    <td>@item.Quantity @item.Ingredient.DefaultUnit</td>
+                    <td>@item.AddedDate.ToShortDateString()</td>
+                    <td>
+                        @(item.ExpiryDate != null ? item.ExpiryDate.ToShortDateString() : "No Expiry")
+                        @if (isExpired)
+                        {
+                            <span class="badge bg-danger ms-2">Expired</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-userid="@item.AppUserId" class="btn btn-sm btn-outline-secondary">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" asp-route-userid="@item.AppUserId" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

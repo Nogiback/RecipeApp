@@ -1,0 +1,33 @@
+﻿@model PantryItem
+
+@{
+    ViewData["Title"] = "Remove from Pantry";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">Remove from Pantry</h2>
+    <h4>Are you sure you want to delete this item?</h4>
+    <hr />
+
+    <div class="card shadow-sm border-danger mb-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Ingredient.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Quantity: @Model.Quantity @Model.Ingredient.DefaultUnit
+            </h6>
+            @if (Model.ExpiryDate != null)
+            {
+                <p class="card-text mt-2 text-warning">
+                    <strong>Expires:</strong> @Model.ExpiryDate.ToShortDateString()
+                </p>
+            }
+        </div>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="AppUserId" />
+        <input type="submit" value="Yes, Delete It" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

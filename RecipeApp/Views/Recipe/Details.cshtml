@@ -1,0 +1,75 @@
+﻿@model RecipeViewModel
+
+@{
+    ViewData["Title"] = "Recipe Details";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>@Model.Title</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Title" />
+                    }
+                    else
+                    {
+                        <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="height: 250px;">
+                            <span style="font-size: 4rem;">@Model.Title.Substring(0, 1).ToUpper()</span>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Title</dt>
+                        <dd class="col-sm-8">@Model.Title</dd>
+
+                        <dt class="col-sm-4">Created By</dt>
+                        <dd class="col-sm-8">@Model.AppUserName</dd>
+
+                        <dt class="col-sm-4">Cook Time</dt>
+                        <dd class="col-sm-8">@Model.CookTimeMins mins</dd>
+
+                        <dt class="col-sm-4">Ingredients</dt>
+                        <dd class="col-sm-8"><span class="badge bg-info fs-6">@Model.IngredientCount</span></dd>
+
+                        <dt class="col-sm-4">Reviews</dt>
+                        <dd class="col-sm-8"><span class="badge bg-secondary fs-6">@Model.ReviewCount</span></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <hr />
+
+            <h5>Instructions</h5>
+            <p class="mb-4" style="white-space: pre-line;">@Model.Instructions</p>
+
+            <h5>Ingredient Breakdown</h5>
+            @if (Model.IngredientItems.Any())
+            {
+                <ul class="list-group">
+                    @foreach (var item in Model.IngredientItems)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>@item.IngredientName</span>
+                            <span class="badge bg-dark">@item.Quantity @item.Unit</span>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <div class="alert alert-light border">No recipe ingredients have been linked yet.</div>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

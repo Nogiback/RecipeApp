@@ -1,0 +1,44 @@
+﻿@model ReviewDetailsViewModel
+@{
+    ViewData["Title"] = "Review Details";
+}
+<h4>@Model.RecipeTitle Review Details</h4>
+
+<table class="table table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Recipe</th>
+            <th>Reviewed By</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Date Posted</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody class="align-middle text-start">
+        <tr>
+            <td>@Model.RecipeTitle</td>
+            <td>@Model.ReviewerName</td>
+            <td class="text-warning">
+                @for (int i = 0; i < Model.Rating; i++)
+                {
+                    <span>★</span>
+                }
+                @for (int i = Model.Rating; i < 5; i++)
+                {
+                    <span class="text-muted">☆</span>
+                }
+            </td>
+            <td>@Model.Comment</td>
+            <td>@Model.DatePosted.ToShortDateString()</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger ms-1">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center m-4">
+    <button type="button" onclick="history.back()" class="btn btn-outline-secondary">Back</button>
+</div>

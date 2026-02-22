@@ -1,0 +1,28 @@
+﻿@model RecipeIngredient
+
+@{
+    ViewData["Title"] = "Remove Ingredient";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">Remove Ingredient</h2>
+    <h4>Are you sure you want to remove this from the recipe?</h4>
+    <hr />
+
+    <div class="card shadow-sm border-danger mb-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Ingredient.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                Quantity: @Model.Quantity @(string.IsNullOrEmpty(Model.UnitDisplay) ? Model.Ingredient.DefaultUnit : Model.UnitDisplay)
+            </h6>
+        </div>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="RecipeId" />
+
+        <input type="submit" value="Yes, Remove It" class="btn btn-danger" />
+        <a asp-action="Index" asp-route-recipeId="@Model.RecipeId" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

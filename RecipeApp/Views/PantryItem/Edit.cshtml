@@ -1,0 +1,50 @@
+﻿@model CreatePantryItemViewModel
+
+@{
+    ViewData["Title"] = "Edit Pantry Item";
+}
+
+<div class="container mt-4">
+    <h2>Edit Pantry Item</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="UserId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="ExistingIngredientId" class="control-label fw-bold"></label>
+                    <select asp-for="ExistingIngredientId" asp-items="Model.IngredientOptions" class="form-select"></select>
+                    <span asp-validation-for="ExistingIngredientId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Quantity" class="control-label fw-bold"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="ExpiryDate" class="control-label fw-bold"></label>
+                    <input asp-for="ExpiryDate" class="form-control" type="date" />
+                    <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

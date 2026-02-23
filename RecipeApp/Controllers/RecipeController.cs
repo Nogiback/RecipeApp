@@ -65,7 +65,7 @@ namespace RecipeApp.Controllers
                 {
                     IngredientName = ri.Ingredient?.Name ?? "N/A",
                     Quantity = ri.Quantity,
-                    Unit = ri.Unit
+                    Unit = ri.UnitDisplay
                 }).ToList()
             };
 

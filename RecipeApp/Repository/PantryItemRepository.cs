@@ -44,7 +44,8 @@ namespace RecipeApp.Repository
         public IEnumerable<PantryItem> GetPantryByUserId(int userId)
         {
             return _context.PantryItems
-                    .Include(p => p.Ingredient) // Keep eager loading so the view doesn't crash!
+                    .Include(p => p.Ingredient)
+                    .ThenInclude(i => i.Category)
                     .Where(p => p.AppUserId == userId)
                     .ToList();
         }

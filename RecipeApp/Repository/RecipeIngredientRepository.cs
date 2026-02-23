@@ -33,13 +33,15 @@ namespace RecipeApp.Repository
         {
             return _context.RecipeIngredients
                 .Include(ri => ri.Ingredient)
+                .ThenInclude(i => i.Category)
                 .FirstOrDefault(ri => ri.Id == id);
         }
 
         public IEnumerable<RecipeIngredient> GetIngredientsByRecipeId(int recipeId)
         {
             return _context.RecipeIngredients
-                    .Include(ri => ri.Ingredient) // This pulls in the Ingredient name, unit, etc.
+                    .Include(ri => ri.Ingredient)
+                    .ThenInclude(i => i.Category)
                     .Where(ri => ri.RecipeId == recipeId)
                     .ToList();
         }

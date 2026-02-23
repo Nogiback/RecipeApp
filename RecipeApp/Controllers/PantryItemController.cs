@@ -24,6 +24,14 @@ namespace RecipeApp.Controllers
             return View(pantryItems);
         }
 
+        public IActionResult Details(int id)
+        {
+            var ingredientLink = _pantryItemRepo.GetById(id);
+            if (ingredientLink == null) return NotFound();
+
+            return View(ingredientLink);
+        }
+
         public IActionResult Create(int userId)
         {
             IEnumerable<Ingredient> ingredients = _ingredientRepo.GetAll();
@@ -84,6 +92,7 @@ namespace RecipeApp.Controllers
             var viewModel = new CreatePantryItemViewModel
             {
                 Id = pantryItem.Id,
+                UserId = pantryItem.AppUserId,
                 ExistingIngredientId = pantryItem.IngredientId,
                 Quantity = pantryItem.Quantity,
                 ExpiryDate = pantryItem.ExpiryDate,

@@ -28,6 +28,6 @@
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="AppUserId" />
         <input type="submit" value="Yes, Delete It" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+        <a asp-action="Index" asp-route-userid="@Model.AppUserId" class="btn btn-secondary ms-2">Cancel</a>
     </form>
 </div>

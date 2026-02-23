@@ -1,25 +1,19 @@
 ﻿@model ReviewDetailsViewModel
+
 @{
     ViewData["Title"] = "Review Details";
 }
-<h4>@Model.RecipeTitle Review Details</h4>
 
-<table class="table table-hover">
-    <thead class="table-light">
-        <tr>
-            <th>Recipe</th>
-            <th>Reviewed By</th>
-            <th>Rating</th>
-            <th>Comment</th>
-            <th>Date Posted</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody class="align-middle text-start">
-        <tr>
-            <td>@Model.RecipeTitle</td>
-            <td>@Model.ReviewerName</td>
-            <td class="text-warning">
+
+<h4>Review Details</h4>
+
+<div class="d-flex justify-content-center">
+    <div class="card mb-3 p-4 shadow-sm rounded h-auto" style="width: 60%">
+
+        <div class="card-body text-center">
+            <h3 class="card-title mb-2">@Model.RecipeTitle</h3>
+
+            <div class="text-warning fs-3 mb-3">
                 @for (int i = 0; i < Model.Rating; i++)
                 {
                     <span>★</span>
@@ -28,17 +22,37 @@
                 {
                     <span class="text-muted">☆</span>
                 }
-            </td>
-            <td>@Model.Comment</td>
-            <td>@Model.DatePosted.ToShortDateString()</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Edit</a>
-                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger ms-1">Delete</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+            </div>
 
-<div class="text-center m-4">
-    <button type="button" onclick="history.back()" class="btn btn-outline-secondary">Back</button>
+            <hr class="w-50 mx-auto text-muted" />
+
+            <div class="text-start mt-4 mx-auto" style="max-width: 80%;">
+                <p class="card-text fs-5 mb-1">
+                    <strong>Reviewed By:</strong> @Model.ReviewerName
+                </p>
+                <p class="card-text fs-5 mb-4 text-muted">
+                    <strong>Date Posted:</strong> @Model.DatePosted.ToShortDateString()
+                </p>
+
+                <div class="p-4 bg-light rounded fst-italic fs-5 text-center shadow-sm border">
+                    "@Model.Comment"
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary px-4">
+                Edit
+            </a>
+
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger px-4 ms-2">
+                Delete
+            </a>
+
+            <button type="button" onclick="history.back()" class="btn btn-outline-secondary px-4 ms-2">
+                Back
+            </button>
+        </div>
+
+    </div>
 </div>

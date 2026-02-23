@@ -34,6 +34,15 @@ namespace RecipeApp.Controllers
                 _recipeIngredientRepo.GetIngredientsByRecipeId(recipe.Id);
             return View(ingredients);
         }
+
+        public IActionResult Details(int id)
+        {
+            var ingredientLink = _recipeIngredientRepo.GetById(id); 
+            if (ingredientLink == null) return NotFound();
+
+            return View(ingredientLink);
+        }
+
         // CREATE: Show form 
         public IActionResult Create(int recipeId)
         {

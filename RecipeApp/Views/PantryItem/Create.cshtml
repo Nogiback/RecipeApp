@@ -4,46 +4,53 @@
     ViewData["Title"] = "Add to Pantry";
 }
 
-<div class="container mt-4">
-    <h2>Add Item to Pantry</h2>
-    <hr />
 
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create">
-            <input type="hidden" asp-for="UserId" />
+<h4 class="text-center">Add Item to Pantry</h4>
+
+@if (ViewBag.msg != null)
+{
+    <div class="alert alert-info" role="alert">
+        @ViewBag.msg
+    </div>
+}
+
+<div class="d-flex justify-content-center">
+    <div class="card mb-3 p-3 shadow-sm rounded h-auto" style="width: 60%">
+        <form asp-action="Create" class="mt-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group mb-3">
-                <label asp-for="ExistingIngredientId" class="control-label"></label>
 
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="mb-3">
+                <label asp-for="ExistingIngredientId" class="form-label fw-bold"></label>
                 <select asp-for="ExistingIngredientId" asp-items="Model.IngredientOptions" class="form-select">
                     <option value="">-- Choose an Ingredient --</option>
                 </select>
-
                 <span asp-validation-for="ExistingIngredientId" class="text-danger"></span>
             </div>
-             <div class="form-group" mb-3>
-                <label asp-for="Quantity" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Quantity" class="form-label fw-bold"></label>
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
-            <div class="form-group mb-3">
-                <label asp-for="ExpiryDate" class="control-label"></label>
-                <input asp-for="ExpiryDate" class="form-control" />
+
+            <div class="mb-3">
+                <label asp-for="ExpiryDate" class="form-label fw-bold"></label>
+                <input asp-for="ExpiryDate" class="form-control" type="date" />
                 <span asp-validation-for="ExpiryDate" class="text-danger"></span>
             </div>
-            <div class="form-group mb-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-outline-secondary px-4">Add Item</button>
+                <a asp-action="Index" asp-route-userid="@Model.UserId" class="btn btn-outline-secondary px-4 ms-2">Back to List</a>
             </div>
         </form>
     </div>
 </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

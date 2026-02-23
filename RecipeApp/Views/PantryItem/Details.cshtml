@@ -1,0 +1,57 @@
+﻿@model PantryItem
+
+@{
+    ViewData["Title"] = "Pantry Item Details";
+}
+
+
+<h4 class="text-center">Pantry Item Details</h4>
+
+<div class="d-flex justify-content-center">
+    <div class="card mb-3 p-3 shadow-sm rounded h-auto" style="width: 60%">
+        <div class="row g-0">
+
+            <div class="col-md-4 d-flex align-items-center justify-content-center bg-light rounded" style="min-height: 200px; border: 1px solid #dee2e6;">
+                <span class="text-secondary fw-bold" style="font-size: 6rem;">
+                    @(string.IsNullOrEmpty(Model.Ingredient?.Name) ? "?" : Model.Ingredient.Name.Substring(0, 1).ToUpper())
+                </span>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body ms-md-4">
+                    <h3 class="card-title mb-4">@Model.Ingredient?.Name</h3>
+
+                    <p class="card-text fs-5">
+                        <strong>Category:</strong> @Model.Ingredient?.Category?.Name <br /><br />
+
+                        <strong>Quantity:</strong> @Model.Quantity @Model.Ingredient?.DefaultUnit <br /><br />
+
+                        <strong>Added Date:</strong> @Model.AddedDate.ToShortDateString() <br /><br />
+
+                        <strong>Expiry Date:</strong>
+                        @(Model.ExpiryDate != null ? Model.ExpiryDate.ToShortDateString() : "No Expiry")
+
+                        @{
+                            var isExpired = Model.ExpiryDate != null && Model.ExpiryDate < DateTime.Now;
+                            if (isExpired)
+                            {
+                                <span class="badge bg-danger ms-2">Expired</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary px-4">
+                Edit
+            </a>
+
+            <a asp-action="Index" asp-route-id="@Model.Id" asp-route-userid="@Model.AppUserId" class="btn btn-outline-secondary px-4 ms-2">
+                Back to Pantry
+            </a>
+        </div>
+    </div>
+</div>

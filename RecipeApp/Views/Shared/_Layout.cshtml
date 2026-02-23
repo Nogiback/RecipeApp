@@ -20,12 +20,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                         @* Adding Header Links to Entities *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="AppUser" asp-action="Index">Users</a>
@@ -35,6 +29,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Ingredient" asp-action="Index">Ingredients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="PantryItem" asp-action="Index">Pantry Items</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Recipe" asp-action="Index">Recipes</a>

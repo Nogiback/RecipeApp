@@ -73,7 +73,7 @@ namespace RecipeApp.Controllers
         }
 
         // GET: Recipe/Create
-        public IActionResult Create(int recipeId)
+        public IActionResult Create()
         {
             var viewModel = new RecipeViewModel();
             PopulateAppUserOptions(viewModel);

@@ -88,5 +88,5 @@ Visit the URL displayed in the console (typically `https://localhost:5001`).
 
 ## Project Team
 - Peter Do
-- Nguyen Hai Anh tran
+- Nguyen Hai Anh Tran
 - Bowale Omode
